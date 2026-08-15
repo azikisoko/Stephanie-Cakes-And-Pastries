@@ -5,31 +5,31 @@
 
 @theme {
   /* Colors — Light theme defaults */
-  --color-bg: #FFFDD0;
-  --color-surface: #FFFFFF;
-  --color-surface-secondary: #F3EEE8;
+  --color-bg: #fffdd0;
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f3eee8;
 
-  --color-primary: #3B241C;
-  --color-primary-hover: #24150F;
+  --color-primary: #3b241c;
+  --color-primary-hover: #24150f;
 
-  --color-accent: #A66A4C;
+  --color-accent: #a66a4c;
   --color-accent-hover: #875139;
-  --color-accent-secondary: #C99B78;
+  --color-accent-secondary: #c99b78;
 
-  --color-text: #241A16;
-  --color-text-secondary: #6F625B;
-  --color-text-muted: #9A8D84;
+  --color-text: #241a16;
+  --color-text-secondary: #6f625b;
+  --color-text-muted: #9a8d84;
 
-  --color-border: #E5DDD6;
-  --color-border-strong: #D2C5BB;
+  --color-border: #e5ddd6;
+  --color-border-strong: #d2c5bb;
 
-  --color-success: #557A61;
-  --color-warning: #B47A3C;
-  --color-error: #A84B45;
+  --color-success: #557a61;
+  --color-warning: #b47a3c;
+  --color-error: #a84b45;
 
   /* Fonts */
-  --font-display: 'Cormorant Garamond', serif;
-  --font-body: 'Manrope', sans-serif;
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Manrope", sans-serif;
 
   /* Radius */
   --radius-sm: 8px;
@@ -50,26 +50,26 @@
 /* Dark theme overrides — these override the actual CSS variable values at runtime */
 .dark {
   --color-bg: #171311;
-  --color-surface: #211A17;
+  --color-surface: #211a17;
   --color-surface-secondary: #302620;
 
-  --color-primary: #C98C67;
+  --color-primary: #c98c67;
   --color-primary-hover: #530d0d;
 
-  --color-accent: #C98C67;
-  --color-accent-hover: #DDA17D;
-  --color-accent-secondary: #A96F52;
+  --color-accent: #c98c67;
+  --color-accent-hover: #dda17d;
+  --color-accent-secondary: #a96f52;
 
-  --color-text: #F7F0EA;
-  --color-text-secondary: #C8BAB0;
+  --color-text: #f7f0ea;
+  --color-text-secondary: #c8bab0;
   --color-text-muted: #918178;
 
-  --color-border: #3B302A;
+  --color-border: #3b302a;
   --color-border-strong: #514139;
 
-  --color-success: #789A80;
-  --color-warning: #C5965B;
-  --color-error: #C97770;
+  --color-success: #789a80;
+  --color-warning: #c5965b;
+  --color-error: #c97770;
 }
 
 html {
@@ -79,13 +79,17 @@ html {
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  transition: background-color 250ms ease, color 250ms ease;
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
 }
 
 .btn-primary {
   background-color: var(--color-primary);
   color: var(--color-bg);
-  transition: background-color 200ms ease, color 200ms ease;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
 }
 
 .btn-primary:hover {
