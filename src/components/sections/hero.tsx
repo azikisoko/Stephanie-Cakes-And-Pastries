@@ -23,7 +23,7 @@ const itemVariants: Variants = {
   },
 };
 
-export function Hero() {
+export function Hero({ heroImageUrl }: { heroImageUrl?: string }) {
   return (
     <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-32">
       <div className="max-w-container mx-auto px-5 md:px-10">
@@ -44,11 +44,13 @@ export function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="font-display text-5xl md:text-7xl leading-[1.05] text-text mb-6"
+              className="font-display text-3xl md:text-6xl leading-[1.05] text-text mb-6"
             >
-              Cakes made to
+              Crafted with love,
               <br />
-              be remembered.
+              made to celeberate life's <br />
+              <span className="font-accent text-accent">sweetest </span>{" "}
+              moments.
             </motion.h1>
 
             <motion.p
@@ -87,10 +89,11 @@ export function Hero() {
           >
             <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-lg-light dark:shadow-lg-dark">
               <Image
-                src="/hero-placeholder.jpg"
+                src={heroImageUrl || "/hero-placeholder.jpg"}
                 alt="Signature celebration cake by Stephanie Cakes & Pastries"
                 fill
                 priority
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

@@ -31,5 +31,12 @@ export default defineType({
       title: "Instagram URL (future use)",
       type: "url",
     }),
+    defineField({
+      name: "heroImage",
+      title: "Hero Image",
+      type: "image",
+      options: { hotspot: true },
+      description: "Main image shown on the homepage hero section",
+    }),
   ],
 });

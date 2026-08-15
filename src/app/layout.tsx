@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/theme-provider";
-import { Navbar } from "../components/layout/navbar";
-import { Footer } from "../components/layout/footer";
+import { priestacy } from "../lib/fonts";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -43,18 +42,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${manrope.variable}`}
+      className={`${cormorant.variable} ${manrope.variable} ${priestacy.variable}`}
       suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="font-body">
-        <ThemeProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

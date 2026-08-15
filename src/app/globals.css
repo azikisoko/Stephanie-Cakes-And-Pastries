@@ -30,7 +30,8 @@
   /* Fonts */
   --font-display: "Cormorant Garamond", serif;
   --font-body: "Manrope", sans-serif;
-
+  --font-accent: "Priestacy", cursive;
+  
   /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
