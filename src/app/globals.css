@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Enable class-based dark mode (so we control it manually, not just via OS preference) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Colors — Light theme defaults */
+  --color-bg: #FFFDD0;
+  --color-surface: #FFFFFF;
+  --color-surface-secondary: #F3EEE8;
+
+  --color-primary: #3B241C;
+  --color-primary-hover: #24150F;
+
+  --color-accent: #A66A4C;
+  --color-accent-hover: #875139;
+  --color-accent-secondary: #C99B78;
+
+  --color-text: #241A16;
+  --color-text-secondary: #6F625B;
+  --color-text-muted: #9A8D84;
+
+  --color-border: #E5DDD6;
+  --color-border-strong: #D2C5BB;
+
+  --color-success: #557A61;
+  --color-warning: #B47A3C;
+  --color-error: #A84B45;
+
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Manrope', sans-serif;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-product: 16px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm-light: 0 4px 12px rgba(59, 36, 28, 0.06);
+  --shadow-md-light: 0 12px 32px rgba(59, 36, 28, 0.08);
+  --shadow-lg-light: 0 24px 60px rgba(59, 36, 28, 0.12);
+  --shadow-sm-dark: 0 4px 16px rgba(0, 0, 0, 0.18);
+  --shadow-md-dark: 0 12px 32px rgba(0, 0, 0, 0.24);
+  --shadow-lg-dark: 0 24px 60px rgba(0, 0, 0, 0.32);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark theme overrides — these override the actual CSS variable values at runtime */
+.dark {
+  --color-bg: #171311;
+  --color-surface: #211A17;
+  --color-surface-secondary: #302620;
+
+  --color-primary: #C98C67;
+  --color-primary-hover: #530d0d;
+
+  --color-accent: #C98C67;
+  --color-accent-hover: #DDA17D;
+  --color-accent-secondary: #A96F52;
+
+  --color-text: #F7F0EA;
+  --color-text-secondary: #C8BAB0;
+  --color-text-muted: #918178;
+
+  --color-border: #3B302A;
+  --color-border-strong: #514139;
+
+  --color-success: #789A80;
+  --color-warning: #C5965B;
+  --color-error: #C97770;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
 }
