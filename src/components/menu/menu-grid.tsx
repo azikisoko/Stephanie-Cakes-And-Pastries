@@ -1,10 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import { client } from "../../lib/sanity";
-import { featuredProductsQuery } from "../../lib/queries";
-import { ProductCard } from "../../components/product/product-card";
 import { urlFor } from "../../lib/sanity-image";
 
-type FeaturedProduct = {
+type Product = {
   _id: string;
   name: string;
   slug: string;
@@ -12,36 +12,72 @@ type FeaturedProduct = {
   startingPrice: number;
   priceNote?: string;
   image?: string;
+  categorySlug?: string;
   categoryTitle?: string;
 };
 
-export async function FeaturedCollection() {
-  const products = await client.fetch<FeaturedProduct[]>(featuredProductsQuery);
+type Category = {
+  _id: string;
+  title: string;
+  slug: string;
+};
 
-  if (!products || products.length === 0) return null;
+export function MenuGrid({
+  products,
+  categories,
+}: {
+  products: Product[];
+  categories: Category[];
+}) {
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+
+  const filteredProducts =
+    activeCategory === "all"
+      ? products
+      : products.filter((p) => p.categorySlug === activeCategory);
 
   return (
-    <section className="py-20 md:py-32">
-      <div className="max-w-container mx-auto px-5 md:px-10">
-        {/* Section Header */}
-        <div className="mb-12 md:mb-16">
-          <p className="font-body text-sm tracking-widest uppercase text-accent mb-3">
-            The Collection
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl text-text max-w-xl">
-            A selection of our signature creations.
-          </h2>
-        </div>
+    <div>
+      {/* Category Filter Pills */}
+      <div className="flex items-center gap-3 overflow-x-auto pb-4 mb-8 md:mb-12 no-scrollbar">
+        <button
+          onClick={() => setActiveCategory("all")}
+          className={`shrink-0 font-body text-sm font-semibold px-5 h-10 rounded-pill border transition-colors duration-200 ${
+            activeCategory === "all"
+              ? "bg-primary text-bg border-primary"
+              : "border-border text-text-secondary hover:border-border-strong"
+          }`}
+        >
+          All
+        </button>
+        {categories.map((cat) => (
+          <button
+            key={cat._id}
+            onClick={() => setActiveCategory(cat.slug)}
+            className={`shrink-0 font-body text-sm font-semibold px-5 h-10 rounded-pill border transition-colors duration-200 ${
+              activeCategory === cat.slug
+                ? "bg-primary text-bg border-primary"
+                : "border-border text-text-secondary hover:border-border-strong"
+            }`}
+          >
+            {cat.title}
+          </button>
+        ))}
+      </div>
 
-        {/* Masonry Grid */}
+      {/* Masonry Product Grid */}
+      {filteredProducts.length === 0 ? (
+        <p className="font-body text-text-secondary text-center py-20">
+          No products in this category yet — check back soon.
+        </p>
+      ) : (
         <div className="columns-2 md:columns-3 lg:columns-5 gap-4">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <Link
               key={product._id}
               href={`/product/${product.slug}`}
               className="group block rounded-product overflow-hidden bg-surface border border-border hover:border-border-strong transition-all duration-300 break-inside-avoid mb-4 md:mb-6"
             >
-              {/* Image — no height cap, no cropping */}
               {product.image ? (
                 <img
                   src={urlFor(product.image).width(800).fit("max").url()}
@@ -56,13 +92,11 @@ export async function FeaturedCollection() {
                 </div>
               )}
 
-              {/* Card Info — name only on mobile, full details on desktop */}
               <div className="p-4 md:p-5">
                 <h3 className="font-display text-lg md:text-2xl text-text leading-tight">
                   {product.name}
                 </h3>
 
-                {/* Hidden on mobile, visible on desktop */}
                 <div className="hidden md:block mt-3">
                   {product.shortDescription && (
                     <p className="font-body text-sm text-text-secondary mb-3 line-clamp-2">
@@ -84,7 +118,6 @@ export async function FeaturedCollection() {
                   </div>
                 </div>
 
-                {/* Mobile only — just a subtle tap hint */}
                 <p className="md:hidden font-body text-xs text-text-muted mt-1">
                   Tap to view
                 </p>
@@ -92,17 +125,7 @@ export async function FeaturedCollection() {
             </Link>
           ))}
         </div>
-
-        {/* CTA */}
-        <div className="mt-10 flex justify-center">
-          <Link
-            href="/menu"
-            className="border border-border text-text rounded-pill px-8 h-12 flex items-center justify-center font-body text-sm font-semibold hover:border-border-strong transition-colors duration-200"
-          >
-            Explore Collection
-          </Link>
-        </div>
-      </div>
-    </section>
+      )}
+    </div>
   );
 }
