@@ -38,5 +38,17 @@ export default defineType({
       options: { hotspot: true },
       description: "Main image shown on the homepage hero section",
     }),
+    defineField({
+      name: "deliveryFee",
+      title: "Delivery Fee Info",
+      type: "string",
+      description: 'e.g. "₦2,000 - ₦5,000 depending on location"',
+    }),
+    defineField({
+      name: "deliveryDays",
+      title: "Delivery Days/Hours",
+      type: "string",
+      description: 'e.g. "Monday - Saturday, 9am - 6pm"',
+    }),
   ],
 });

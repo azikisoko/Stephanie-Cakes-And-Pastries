@@ -75,3 +75,21 @@ export const allFaqsQuery = `
     category
   }
 `;
+
+export const allGalleryItemsQuery = `
+  *[_type == "galleryItem"] | order(order asc) {
+    _id,
+    image,
+    caption,
+    occasionTags
+  }
+`;
+
+export const deliveryInfoQuery = `
+  *[_type == "siteSettings"][0] {
+    deliveryAreas,
+    deliveryNotice,
+    deliveryFee,
+    deliveryDays
+  }
+`;
