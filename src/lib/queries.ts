@@ -40,3 +40,19 @@ export const allProductsQuery = `
     "categoryTitle": category->title
   }
 `;
+
+export const productBySlugQuery = `
+  *[_type == "product" && slug.current == $slug][0] {
+    _id,
+    name,
+    "slug": slug.current,
+    shortDescription,
+    fullDescription,
+    startingPrice,
+    priceNote,
+    sizeOptions,
+    noticeRequired,
+    "images": images[],
+    "categoryTitle": category->title
+  }
+`;

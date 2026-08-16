@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
+import { customOrderWhatsappLink } from "../../lib/whatsapp";
 import {
   InstagramIcon,
   FacebookIcon,
@@ -9,7 +10,6 @@ import {
 
 const navLinks = [
   { href: "/menu", label: "Menu" },
-  { href: "/custom-order", label: "Custom Orders" },
   { href: "/gallery", label: "Gallery" },
   { href: "/about", label: "About" },
   { href: "/delivery", label: "Delivery" },
@@ -40,6 +40,16 @@ export function Footer() {
               Explore
             </h4>
             <ul className="flex flex-col gap-3">
+              <li>
+                <a
+                  href={customOrderWhatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-body text-sm text-text-secondary hover:text-accent transition-colors duration-200"
+                >
+                  Custom Orders
+                </a>
+              </li>
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -80,7 +90,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2 font-body text-sm text-text-secondary">
                 <Mail size={16} strokeWidth={1.5} />
-                hello@stephaniecakes.com
+                ojiakorstephanie5@gmail.com
               </li>
               <li className="flex items-center gap-2 font-body text-sm text-text-secondary">
                 <MapPin size={16} strokeWidth={1.5} />

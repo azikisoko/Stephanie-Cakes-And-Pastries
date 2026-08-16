@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
+import { customOrderWhatsappLink } from "../../lib/whatsapp";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -71,12 +72,14 @@ export function Hero({ heroImageUrl }: { heroImageUrl?: string }) {
               >
                 Explore the Menu
               </Link>
-              <Link
-                href="/custom-order"
-                className="bg-accent text-white rounded-pill px-8 h-12 flex items-center justify-center font-body text-sm font-semibold hover:bg-primary-hover transition-colors duration-200"
+              <a
+                href={customOrderWhatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-accent text-white rounded-pill px-8 h-12 flex items-center justify-center font-body text-sm font-semibold hover:bg-accent-hover transition-colors duration-200"
               >
                 Custom Order
-              </Link>
+              </a>
             </motion.div>
           </motion.div>
 

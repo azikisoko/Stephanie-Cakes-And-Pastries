@@ -1,6 +1,8 @@
 import { client } from "../../../lib/sanity";
 import { allCategoriesQuery, allProductsQuery } from "../../../lib/queries";
 import { MenuGrid } from "../../../components/menu/menu-grid";
+import { customOrderWhatsappLink } from "../../../lib/whatsapp";
+
 import Link from "next/link";
 
 export const metadata = {
@@ -42,12 +44,14 @@ export default async function MenuPage() {
             Let&apos;s create something custom, made specifically for your
             occasion.
           </p>
-          <Link
-            href="/custom-order"
+          <a
+            href={customOrderWhatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex bg-accent text-white rounded-pill px-8 h-12 items-center justify-center font-body text-sm font-semibold hover:bg-accent-hover transition-colors duration-200"
           >
             Start a Custom Order
-          </Link>
+          </a>
         </div>
       </div>
     </main>
