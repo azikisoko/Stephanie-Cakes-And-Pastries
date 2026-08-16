@@ -104,3 +104,15 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+.prose-custom p {
+  font-family: var(--font-body);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+}
+
+.prose-custom strong {
+  color: var(--color-text);
+  font-weight: 600;
+}

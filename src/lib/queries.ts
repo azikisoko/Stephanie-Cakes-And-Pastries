@@ -56,3 +56,22 @@ export const productBySlugQuery = `
     "categoryTitle": category->title
   }
 `;
+
+export const aboutPageQuery = `
+  *[_type == "aboutPage"][0] {
+    founderName,
+    founderPhoto,
+    headline,
+    storyText,
+    "galleryImages": galleryImages[]
+  }
+`;
+
+export const allFaqsQuery = `
+  *[_type == "faq"] | order(order asc) {
+    _id,
+    question,
+    answer,
+    category
+  }
+`;

@@ -5,6 +5,7 @@ import testimonial from "./testimonial";
 import faq from "./faq";
 import blogPost from "./blogPost";
 import siteSettings from "./siteSettings";
+import aboutPage from "./aboutpage";
 
 export const schemaTypes = [
   category,
@@ -14,4 +15,5 @@ export const schemaTypes = [
   faq,
   blogPost,
   siteSettings,
+  aboutPage,
 ];
