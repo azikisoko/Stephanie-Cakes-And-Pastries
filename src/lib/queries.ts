@@ -93,3 +93,24 @@ export const deliveryInfoQuery = `
     deliveryDays
   }
 `;
+
+export const allBlogPostsQuery = `
+  *[_type == "blogPost"] | order(publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    coverImage,
+    publishedAt
+  }
+`;
+
+export const blogPostBySlugQuery = `
+  *[_type == "blogPost" && slug.current == $slug][0] {
+    title,
+    excerpt,
+    coverImage,
+    body,
+    publishedAt
+  }
+`;

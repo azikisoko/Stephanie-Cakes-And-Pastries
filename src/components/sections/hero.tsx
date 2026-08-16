@@ -49,7 +49,7 @@ export function Hero({ heroImageUrl }: { heroImageUrl?: string }) {
             >
               Crafted with love,
               <br />
-              made to celeberate life's <br />
+              made to celebrate life's <br />
               <span className="font-accent text-accent">sweetest </span>{" "}
               moments.
             </motion.h1>
@@ -91,14 +91,22 @@ export function Hero({ heroImageUrl }: { heroImageUrl?: string }) {
             className="relative"
           >
             <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-lg-light dark:shadow-lg-dark">
-              <Image
-                src={heroImageUrl || "/hero-placeholder.jpg"}
-                alt="Signature celebration cake by Stephanie Cakes & Pastries"
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-              />
+              {heroImageUrl ? (
+                <Image
+                  src={heroImageUrl}
+                  alt="Signature celebration cake by Stephanie Cakes & Pastries"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-surface-secondary flex items-center justify-center">
+                  <span className="font-body text-sm text-text-muted">
+                    Hero image coming soon
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Floating info badge */}

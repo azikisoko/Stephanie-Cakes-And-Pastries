@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/theme-provider";
 import { priestacy } from "../lib/fonts";
+import Script from "next/script";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -19,9 +20,45 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Stephanie Cakes & Pastries | Custom Cakes in Abuja",
+  metadataBase: new URL("https://stephaniecakes.com"), // update once real domain is live
+  title: {
+    default: "Stephanie Cakes & Pastries | Custom Cakes in Abuja",
+    template: "%s | Stephanie Cakes & Pastries",
+  },
   description:
     "Handcrafted cakes, pastries, and dessert experiences for birthdays, weddings, and celebrations in Abuja.",
+  keywords: [
+    "cakes in Abuja",
+    "bakery Abuja",
+    "birthday cake Abuja",
+    "wedding cake Abuja",
+    "small chops Abuja",
+    "custom cakes Nigeria",
+  ],
+  openGraph: {
+    title: "Stephanie Cakes & Pastries | Custom Cakes in Abuja",
+    description:
+      "Handcrafted cakes, pastries, and dessert experiences for birthdays, weddings, and celebrations in Abuja.",
+    url: "https://stephaniecakes.com",
+    siteName: "Stephanie Cakes & Pastries",
+    images: [
+      {
+        url: "/og-default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Stephanie Cakes & Pastries",
+      },
+    ],
+    locale: "en_NG",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stephanie Cakes & Pastries | Custom Cakes in Abuja",
+    description:
+      "Handcrafted cakes, pastries, and dessert experiences for birthdays, weddings, and celebrations in Abuja.",
+    images: ["/og-default.jpg"],
+  },
 };
 
 const themeInitScript = `
@@ -46,7 +83,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeInitScript }}
+        />
       </head>
       <body className="font-body">
         <ThemeProvider>{children}</ThemeProvider>
